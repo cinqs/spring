@@ -11,14 +11,14 @@ public class GreetingController{
 	private final AtomicLong counter = new AtomicLong();
 
 	@RequestMapping("/greeting")
-	public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name){
+	public Greeting greeting(@RequestParam(value = "name", defaultValue = "default") String name){
+		System.out.printf("GET received, /greeting with name: %s", name );
 		return new Greeting(counter.incrementAndGet(),
 		String.format(template, name));
 	}
 	@RequestMapping("/cisong")
-	public int cisong(@RequestParam(value = "cisong", defaultValue = "Ci SONG") String name){
-		//return new Cisong(12, true);
-
-		return 3;
+	public Cisong cisong(@RequestParam(value = "cisong", defaultValue = "Ci SONG") String name){
+		System.out.printf("GET received, /cisong with name: %s", name );
+		return new Cisong(3, true);
 	}
 }
